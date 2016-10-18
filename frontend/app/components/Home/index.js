@@ -19,9 +19,11 @@ export class Home extends React.Component {
       <div>
         <Sidebar />
         <div className={style.chatWrapper}>
-          <h1 className={style.title}>Phoenix Chat</h1>
-          {this.state.formState === "signup" ? <Signup /> : null}
-          {this.state.formState === "login" ? <Login /> : null}
+          <div className={style.leader}>
+            <h1 className={style.title}>Phoenix Chat</h1>
+            {this.state.formState === "signup" ? <Signup /> : null}
+            {this.state.formState === "login" ? <Login /> : null}
+          </div>
         </div>
       </div>
     )
