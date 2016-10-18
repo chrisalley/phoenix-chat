@@ -3,13 +3,8 @@ defmodule PhoenixChat.UserController do
 
   alias PhoenixChat.User
 
-  def index(conn, _params) do
-    users = Repo.all(User)
-    render(conn, "index.json", users: users)
-  end
-
   def create(conn, %{"user" => user_params}) do
-    changeset = User.changeset(%User{}, user_params)
+    changeset = User.registration_changeset(%User{}, user_params)
 
     case Repo.insert(changeset) do
       {:ok, user} ->
@@ -22,11 +17,6 @@ defmodule PhoenixChat.UserController do
         |> put_status(:unprocessable_entity)
         |> render(PhoenixChat.ChangesetView, "error.json", changeset: changeset)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-    user = Repo.get!(User, id)
-    render(conn, "show.json", user: user)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
