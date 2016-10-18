@@ -11,7 +11,26 @@ export class Signup extends React.Component {
   }
 
   submit(e) {
-    console.log("Submit button clicked")
+    const user = {
+      username: document.getElementById("signup-username").value,
+      email: document.getElementById("signup-email").value,
+      password: document.getElementById("signup-password").value
+    }
+    fetch("http://localhost:4000/api/users", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ user })
+    })
+    .then((res) => { return res.json() })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.warn(err);
+    })
   }
 
   render() {
@@ -47,6 +66,7 @@ export class Signup extends React.Component {
               id="signup-verify-password" />
           </div>
           <Button
+            onClick={this.submit}
             style={{ width: "100%" }}
             type="primary">
             Submit

@@ -33,6 +33,7 @@ export class Login extends React.Component {
               id="signup-password" />
           </div>
           <Button
+            onClick={this.submit}
             style={{ width: "100%" }}
             type="primary">
             Submit
