@@ -1,6 +1,7 @@
 import React from "react"
 import cssModules from "react-css-modules"
 import style from "./style.css"
+import { connect } from "react-redux"
 
 import { default as Button } from "../Button"
 
@@ -11,7 +12,11 @@ export class Login extends React.Component {
   }
 
   submit(e) {
-    console.log("Submit button clicked")
+    const user = {
+      email: document.getElementById("signup-email").value,
+      password: document.getElementById("signup-password").value
+    }
+    this.props.dispatch(Actions.userLogin(user))
   }
 
   render() {
@@ -44,4 +49,8 @@ export class Login extends React.Component {
   }
 }
 
-export default cssModules(Login, style)
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps)(cssModules(Login, style))
