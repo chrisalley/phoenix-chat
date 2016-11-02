@@ -22,6 +22,7 @@ defmodule PhoenixChat.Router do
   scope "/api", PhoenixChat do
     pipe_through :api
 
+    get "/auth", AuthController, :test
     resources "/users", UserController, except: [:show, :index, :new, :edit]
   end
 end
