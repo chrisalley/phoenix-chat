@@ -2,6 +2,7 @@ import React from "react"
 import cssModules from "react-css-modules"
 import style from "./style.css"
 import { connect } from "react-redux"
+import Actions from "../../redux/actions"
 
 import { default as Button } from "../Button"
 

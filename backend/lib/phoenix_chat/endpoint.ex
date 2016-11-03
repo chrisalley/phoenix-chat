@@ -38,6 +38,6 @@ defmodule PhoenixChat.Endpoint do
     key: "_phoenix_chat_key",
     signing_salt: "b/W+5fgP"
 
-  plug Corsica, allow_headers: ~w(Accept Content-Type Authorization)
+  plug Corsica, allow_headers: ~w(Accept Content-Type Authorization Origin), origins: "http://localhost:3000"
   plug PhoenixChat.Router
 end
