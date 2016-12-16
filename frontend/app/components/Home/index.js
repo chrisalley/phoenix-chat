@@ -1,9 +1,15 @@
 import React from "react"
+import { connect } from "react-redux"
 import cssModules from "react-css-modules"
 import style from "./style.css"
 
 import { default as Signup } from "../Signup"
 import { default as Login } from "../Login"
+import { default as Chat } from "../Chat"
+
+const mapStateToProps = state => ({
+  user: state.user
+})
 
 export class Home extends React.Component {
   constructor(props) {
@@ -41,6 +47,9 @@ export class Home extends React.Component {
   }
 
   render() {
+    if (this.props.user.email) {
+      return (<Chat />)
+    }
     return (
       <div className={style.leader}>
         <h1 className={style.title}>Phoenix Chat</h1>
@@ -52,4 +61,4 @@ export class Home extends React.Component {
   }
 }
 
-export default cssModules(Home, style)
+export default connect(mapStateToProps)(cssModules(Home, style))
