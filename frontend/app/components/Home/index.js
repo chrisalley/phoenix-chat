@@ -6,6 +6,7 @@ import style from "./style.css"
 import { default as Signup } from "../Signup"
 import { default as Login } from "../Login"
 import { default as Chat } from "../Chat"
+import PhoenixChat from "phoenix-chat"
 
 const mapStateToProps = state => ({
   user: state.user
@@ -48,7 +49,11 @@ export class Home extends React.Component {
 
   render() {
     if (this.props.user.email) {
-      return (<Chat />)
+      return (
+        <Chat>
+          <PhoenixChat />
+        </Chat>
+      )
     }
     return (
       <div className={style.leader}>
@@ -56,6 +61,11 @@ export class Home extends React.Component {
         { this.state.formState === "signup" ? <Signup /> : null }
         { this.state.formState === "login" ? <Login /> : null }
         { this.renderToggleContent() }
+        <img
+          role="presentation"
+          className={style.circles}
+          src="https://s3.amazonaws.com/learnphoenix-static-assets/images/circles-full.png" />
+        <PhoenixChat />
       </div>
     )
   }
